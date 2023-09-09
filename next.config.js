@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
-    images: {
-        domains: ['aiprostacksolutions-portfolio.onrender.com'],
+   output: 'export',
+   images: {
+      domains: ["aiprostacksolutions-portfolio.onrender.com"],
     },
 }
 
