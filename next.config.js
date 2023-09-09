@@ -2,8 +2,10 @@
 const nextConfig = {
    output: 'export',
    images: {
-      domains: ["aiprostacksolutions-portfolio.onrender.com"],
-    },
+      domains: ['localhost'],
+      loader: 'imgix',
+      path: 'https://localhost:3000/_next/image',
+   },
 }
 
 module.exports = nextConfig
