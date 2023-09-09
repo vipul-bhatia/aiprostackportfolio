@@ -6,6 +6,7 @@ const nextConfig = {
       loader: 'imgix',
       path: 'https://localhost:3000/_next/image',
    },
+   
 }
 
 module.exports = nextConfig
