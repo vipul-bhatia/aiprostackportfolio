@@ -1,6 +1,6 @@
 
 export const metadata = {
-  title: 'Home - Open PRO',
+  title: 'AIProStackSolutions',
   description: 'Page description',
 }
 
