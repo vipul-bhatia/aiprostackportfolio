@@ -6,25 +6,39 @@ import { db } from '../firebase/config.js';
 
 export default function Newsletter() {
 
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  
 
-  const handleSubscribe = async (e : any) => {
+  const handleSubscribe = async (e: any) => {
     e.preventDefault();
-
+  
+    // Validate form inputs
+    if (!name || !email || !contact) {
+      setError('All fields are required');
+      return;
+    }
+  
     try {
-      await db.collection('subscribers').add({ email });
+      await db.collection('AIPro_email_notify').add({ name, email, contact });
+      setName('');
       setEmail('');
+      setContact('');
       setMessage('Thanks for subscribing!');
+      setError(''); // Clear the error message on success
     } catch (error) {
-      console.error("Error adding email: ", error);
+      console.error('Error adding email: ', error);
       setMessage('Failed to subscribe. Try again later.');
     }
   };
+  
 
 
   return (
-    <section>
+    <section id='newsletter'>
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
         {/* CTA box */}
@@ -48,13 +62,21 @@ export default function Newsletter() {
             {/* CTA content */}
             <div className="mb-6 lg:mr-16 lg:mb-0 text-center lg:text-left lg:w-1/2">
     <h3 className="h3 text-white mb-2">Unlock AiproStack Secrets</h3>
-    <p className="text-purple-200 text-lg">Subscribe now for exclusive insights and cutting-edge solutions directly in your inbox.</p>
+    <p className="text-purple-200 text-lg">Got questions or need assistance? Reach out to us, and we'll be happy to help!</p>
 </div>
 
 
             {/* CTA form */}
             <form className="w-full lg:w-1/2" onSubmit={handleSubscribe}>
-      <div className="flex flex-col sm:flex-row justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+      <div className="flex flex-col  justify-center max-w-xs mx-auto sm:max-w-md lg:max-w-none">
+        <input 
+          type="text" 
+          className="w-full appearance-none bg-purple-700 border border-purple-500 focus:border-purple-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400"
+          placeholder="Your Name" 
+          aria-label="Your Name" 
+          value={name}
+          onChange={e => setName(e.target.value)}
+        />
         <input 
           type="email" 
           className="w-full appearance-none bg-purple-700 border border-purple-500 focus:border-purple-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400"
@@ -63,9 +85,18 @@ export default function Newsletter() {
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
-        <button type="submit" className="btn text-purple-600 bg-purple-100 hover:bg-white shadow">Subscribe</button>
+        <input 
+          type="tel" 
+          className="w-full appearance-none bg-purple-700 border border-purple-500 focus:border-purple-300 rounded-sm px-4 py-3 mb-2 sm:mb-0 sm:mr-2 text-white placeholder-purple-400"
+          placeholder="Your Contact no." 
+          aria-label="Your Contact no." 
+          value={contact}
+          onChange={e => setContact(e.target.value)}
+        />
+        <button type="submit" className="btn text-purple-600 bg-purple-100 hover:bg-white shadow">Submit</button>
       </div>
       <p className="text-center lg:text-left lg:absolute mt-2 opacity-300 text-sm">{message}</p>
+      {error && <p className="text-red-500">{error}</p>}
     </form>
 
 

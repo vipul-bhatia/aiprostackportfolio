@@ -3,13 +3,13 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCd-PGp8CK7sWMJrCKjGtai9q2x0m1UF5M",
-    authDomain: "aiprostacksolution.firebaseapp.com",
-    projectId: "aiprostacksolution",
-    storageBucket: "aiprostacksolution.appspot.com",
-    messagingSenderId: "946383570766",
-    appId: "1:946383570766:web:8f5ff574a0284b61cfc01f"
-  };
+  apiKey: "AIzaSyAGE2tQC0uKJEM9__c6jRwb7cX-cphRldU",
+  authDomain: "sample-1-fcb7b.firebaseapp.com",
+  projectId: "sample-1-fcb7b",
+  storageBucket: "sample-1-fcb7b.appspot.com",
+  messagingSenderId: "885333324081",
+  appId: "1:885333324081:web:2e89d7ddf86c376d004010"
+};
 
 // init firebase
 firebase.initializeApp(firebaseConfig);
